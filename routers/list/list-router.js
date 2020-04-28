@@ -25,6 +25,8 @@ router.post("/", (req, res) => {
       .insert({
         listItem: req.body.listItem,
         description: req.body.description,
+        genre:req.body.genre,
+        rating:req.body.rating,
         user_id: req.body.userId
       })
       .returning("*")
