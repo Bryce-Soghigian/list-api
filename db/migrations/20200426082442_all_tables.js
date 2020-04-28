@@ -10,6 +10,8 @@ return knex.schema
         table.increments();
         table.text("listItem")
         table.text("description")
+        table.text("rating")//S A B C D F
+        table.text("genre")
         table.integer("user_id").unsigned().references("id").inTable("users")
         table.timestamp("date_created").defaultTo(knex.fn.now());
     })
