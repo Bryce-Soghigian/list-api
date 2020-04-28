@@ -21,10 +21,11 @@ router.post("/signup", (req, res) => {
   
     Users.add(user)
       .then(saved => {
+          console.log(saved)
         res.status(201).json(saved);
       })
-      .catch(error => {
-        res.status(500).json(error);
+      .catch(data => {
+        res.status(200).json(data)
       });
   });
   
@@ -40,11 +41,15 @@ router.post("/signup", (req, res) => {
           res.status(200).json({
             user_id: id,
             message: `Welcome ${user.username}!`,
+            password:"im not gonna tell you that because thats not secure development",
             token
           });
+          console.log("token created")
+  
         } else {
           res.status(401).json({ message: "Invalid credentials" });
         }
+
       })
       .catch(error => {
         res.status(500).json({ message: "There was an error logging you in" });
@@ -54,7 +59,7 @@ router.post("/signup", (req, res) => {
   function generateToken(user) {
     const payload = {
       subject: user.id,
-      username: user.username
+      username: user.username,
     };
   
     const options = {
