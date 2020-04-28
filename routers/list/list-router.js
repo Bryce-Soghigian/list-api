@@ -1,7 +1,6 @@
 const router = require("express").Router()
 knex = require("../../config/knex-config");
 
-
 //==========Get all the list items from a user=====//
 router.get("/:id", async (req,res)=> {
 let userId = parseInt(req.params.id)
@@ -34,5 +33,14 @@ router.post("/", (req, res) => {
       })
       .catch((error) => console.log(error));
   });
+  //=========Get list items========
+  router.get("/items",async (req,res) => {
+    await DB.ListItems()
+    .then(data => {
+        res.status(200).json(data)
+    }).catch(err => {
+        res.status(500).json(err)
+    })
+  })
 
   module.exports = router
