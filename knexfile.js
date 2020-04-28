@@ -11,7 +11,7 @@ module.exports = {
       port: '5432',
       user: 'postgres',
       password:process.env.PASS,
-      database: 'database_name'
+      database: 'list-api'
     },
     migrations: {
       directory: './db/migrations'
