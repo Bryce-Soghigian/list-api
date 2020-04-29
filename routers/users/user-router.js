@@ -40,6 +40,7 @@ router.post("/signup", (req, res) => {
           const id = user.id
           res.status(200).json({
             user_id: id,
+            username: username,
             message: `Welcome ${user.username}!`,
             password:"im not gonna tell you that because thats not secure development",
             token
