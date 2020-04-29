@@ -1,6 +1,5 @@
 const router = require("express").Router()
 knex = require("../../config/knex-config");
-const DB = require("./list-models")
 //==========Get all the list items from a user=====//
 router.get("/:id", async (req,res)=> {
 let userId = parseInt(req.params.id)
