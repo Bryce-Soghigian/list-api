@@ -27,7 +27,7 @@ router.post("/", (req, res) => {
         description: req.body.description,
         genre:req.body.genre,
         rating:req.body.rating,
-        user_id: req.body.userId
+        user_id: req.userId
       })
       .returning("*")
       .then((postId) => {
