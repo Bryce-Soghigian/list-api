@@ -34,6 +34,34 @@ knex.select()
       res.status(200).json("deleted")
     })
 })
+//=======Updates by ID ===========//
+router.put("/:id", (req,res) => {
+  const {itemid} = req.params
+  knex("listitems").where({id:req.params.id}).update(req.body).returning("*")
+    .then((postId) => {
+      res.status(200).json(postId);
+    })
+    .catch((error) => console.log(error));
+})
+// router.put("/:itemid",(req,res) => {
+//   const {itemid} = req.params
+
+// knex("listitems")
+// .where("listitems.id", itemid)
+// .update({
+// listItem: req.body.listItem,
+// description: req.body.description,
+// rating: req.body.rating,
+// genre: req.body.genre,
+// userId: req.body.userId
+// })
+//   .then(res => {
+//     res.status(201).json(res)
+//   }).catch(err => {
+//     res.status(500).json(err)
+//   })
+
+// })
 //======Post a new listitem========//
 router.post("/", (req, res) => {
     knex("listitems")
@@ -50,14 +78,5 @@ router.post("/", (req, res) => {
       })
       .catch((error) => console.log(error));
   });
-  //=========Get list items========
-  // router.get("/items",async (req,res) => {
-  //   await DB.ListItems()
-  //   .then(data => {
-  //       res.status(200).json(data)
-  //   }).catch(err => {
-  //       res.status(500).json(err)
-  //   })
-  // })
 
   module.exports = router
