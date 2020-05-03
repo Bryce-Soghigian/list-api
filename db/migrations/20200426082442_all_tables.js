@@ -15,8 +15,18 @@ return knex.schema
         table.integer("user_id").unsigned().references("id").inTable("users")
         table.timestamp("date_created").defaultTo(knex.fn.now());
     })
+    .createTable("episodes", table => {
+        table.increments()
+        table.integer("user_id").unsigned().references("id").inTable("users")
+        table.integer("list_item_id").unsigned().references("id").inTable("listitems")
+        table.integer("season_num")
+        table.integer("episode_num")
+        table.text("episode_description")
+        table.text("episode_rating")
+
+    })
 };
 
-exports.down = function(knex) {
-  return knex.schema.dropTable("listitems").dropTable("users")
+exports.down = function(knex, Promise) {
+  return knex.schema.dropTable("episodes").dropTable("listitems").dropTable("users")
 };

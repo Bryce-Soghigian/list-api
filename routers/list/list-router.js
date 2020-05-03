@@ -21,8 +21,7 @@ knex.select()
 
 //======Delete a list item by id ======//
 router.delete("/:itemid", async(req,res) => {
-  // let userId = parseInt(req.params.userid)
-//get the list item by id
+
 const {itemid} = req.params
 knex.select()
     .from("listitems")
@@ -36,32 +35,13 @@ knex.select()
 })
 //=======Updates by ID ===========//
 router.put("/:id", (req,res) => {
-  const {itemid} = req.params
   knex("listitems").where({id:req.params.id}).update(req.body).returning("*")
     .then((postId) => {
       res.status(200).json(postId);
     })
     .catch((error) => console.log(error));
 })
-// router.put("/:itemid",(req,res) => {
-//   const {itemid} = req.params
 
-// knex("listitems")
-// .where("listitems.id", itemid)
-// .update({
-// listItem: req.body.listItem,
-// description: req.body.description,
-// rating: req.body.rating,
-// genre: req.body.genre,
-// userId: req.body.userId
-// })
-//   .then(res => {
-//     res.status(201).json(res)
-//   }).catch(err => {
-//     res.status(500).json(err)
-//   })
-
-// })
 //======Post a new listitem========//
 router.post("/", (req, res) => {
     knex("listitems")
