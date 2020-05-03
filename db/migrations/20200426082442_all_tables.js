@@ -12,6 +12,7 @@ return knex.schema
         table.text("description")
         table.text("rating")//S A B C D F
         table.text("genre")
+        table.text("status")// To watch // watching // completed //dropped
         table.integer("user_id").unsigned().references("id").inTable("users")
         table.timestamp("date_created").defaultTo(knex.fn.now());
     })
@@ -25,8 +26,15 @@ return knex.schema
         table.text("episode_rating")
 
     })
+    .createTable("watch", table => {
+        table.increments()
+        table.integer("user_id").unsigned().references("id").inTable("users")
+        table.text("list_item")
+        table.text("status")// To watch // watching // completed //dropped
+    
+    })
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTable("episodes").dropTable("listitems").dropTable("users")
+  return knex.schema.dropTableIfExists("watch").dropTable("episodes").dropTable("listitems").dropTable("users")
 };
