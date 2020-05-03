@@ -1,34 +1,34 @@
-const express = require("express");
 jwt = require("jsonwebtoken")
-function verifyToken(req, response, next) {
+const config = require("../routers/users/secrets.js")
+function verifyToken(req, res, next) {
 
+
+    let token = req.headers['x-access-token'] || req.headers['authorization']; // Express headers are auto converted to lowercase
+    if (token.startsWith('Bearer ')) {
+      // Remove Bearer from string
+      token = token.slice(7, token.length);
+    }
+  
+    if (token) {
+      jwt.verify(token, config.jwtSecret, (err, decoded) => {
+        if (err) {
+          return res.json({
+            success: false,
+            message: 'Token is not valid'
+          });
+        } else {
+          req.decoded = decoded;
+          req.user
+          next();
+        }
+      });
+    } else {
+      return res.json({
+        success: false,
+        message: 'Auth token is not supplied'
+      });
+    }
     
-
-    if (!req.headers.authorization) {
-        console.log("Because you have no req.headers.auth")
-        return response.status(401).send('Unauthorized req');
-
-    }
-
-    let token = req.headers.authorization.split(' ')[1];
-
-
-    if (token === "null") {
-        console.log("Because req.headers/auth is null")
-        return response.status(401).send("Unauthorized req");
-    }
-
-    let payload = jwt.verify(token, process.env.JWT_SECRET);
-
-    if (!payload) {
-        console.log("Because you have no payload")
-        return response.status(401).send("Unauthorized req");
-    }
-
-
-    req.userId = payload.user[0].id;
-   
-    next();
 }
 
 
