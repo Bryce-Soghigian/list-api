@@ -1,8 +1,8 @@
 const router = require("express").Router()
 knex = require("../../config/knex-config");
-const verifyToken = require("../../middleware/verifyToken")
+// const verifyToken = require("../../middleware/verifyToken")
 //==========Get all the list items from a user=====//
-router.get("/:id",verifyToken, async (req,res)=> {
+router.get("/:id", async (req,res)=> {
 let userId = parseInt(req.params.id)
 
 knex.select()
@@ -37,7 +37,7 @@ let tier = req.body.tier
 })
 
 //======Delete a list item by id ======//
-router.delete("/:itemid",verifyToken, async(req,res) => {
+router.delete("/:itemid", async(req,res) => {
 
 const {itemid} = req.params
 knex.select()
@@ -52,7 +52,7 @@ knex.select()
     })
 })
 //=======Updates by ID ===========//
-router.put("/:id",verifyToken, (req,res) => {
+router.put("/:id", (req,res) => {
   knex("listitems").where({id:req.params.id}).update(req.body).returning("*")
     .then((postId) => {
       res.status(200).json(postId);
