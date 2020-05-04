@@ -2,7 +2,7 @@ const router = require("express").Router()
 knex = require("../../config/knex-config");
 
 router.post("/",(req,res) => {
-    knex("listitems")
+    knex("episode")
     .insert(req.body)
     .returning("*")
     .then(res => {

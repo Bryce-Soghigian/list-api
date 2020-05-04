@@ -28,7 +28,7 @@ knex.select()
 })
 })
 router.put("/:id",(req,res) =>{
-    const {id} = req.params;
+    const  {id} = req.params;
     knex("watch").where({id})
     .then(changed => {
         res.status(202).json(changed)
