@@ -20,7 +20,7 @@ knex.select()
 
 })
 
-router.get("/tier/:tier", async (req,res) => {
+router.get("/tier/item", async (req,res) => {
 let tier = req.body.tier
   knex.select()
     .from("listitems")
@@ -68,6 +68,7 @@ router.post("/", (req, res) => {
         description: req.body.description,
         genre:req.body.genre,
         rating:req.body.rating,
+        status:req.body.status,
         user_id: req.body.userId
       })
       .returning("*")

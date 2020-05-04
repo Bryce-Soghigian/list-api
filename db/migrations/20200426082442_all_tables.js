@@ -26,13 +26,7 @@ return knex.schema
         table.text("episode_rating")
 
     })
-    .createTable("watch", table => {
-        table.increments()
-        table.integer("user_id").unsigned().references("id").inTable("users")
-        table.text("list_item")
-        table.text("status")// To watch // watching // completed //dropped
-    
-    })
+
 };
 
 exports.down = function(knex, Promise) {
