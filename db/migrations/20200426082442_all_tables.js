@@ -1,4 +1,4 @@
-
+//The two primary relational tables
 exports.up = function(knex) {
 return knex.schema
     .createTable("users", table => {
@@ -16,25 +16,10 @@ return knex.schema
         table.integer("user_id").unsigned().references("id").inTable("users")
         table.timestamp("date_created").defaultTo(knex.fn.now());
     })
-    .createTable("episodes", table => {
-        table.increments()
-        table.integer("user_id").unsigned().references("id").inTable("users")
-        table.integer("list_item_id").unsigned().references("id").inTable("listitems")
-        table.integer("season_num")
-        table.integer("episode_num")
-        table.text("episode_description")
-        table.text("episode_rating")
 
-    })
-    .createTable("watch", table => {
-        table.increments()
-        table.integer("user_id").unsigned().references("id").inTable("users")
-        table.text("list_item")
-        table.text("status")// To watch // watching // completed //dropped
-    
-    })
+
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTableIfExists("watch").dropTable("episodes").dropTable("listitems").dropTable("users")
+  return knex.schema.dropTableIfExists("listitems").dropTable("users")
 };

@@ -20,21 +20,7 @@ knex.select()
 
 })
 
-router.get("/tier/:tier", async (req,res) => {
-let tier = req.body.tier
-  knex.select()
-    .from("listitems")
-    .where("listitems.rating", tier)
-    .then(data => {
-      console.log("=======Tier Data========")
-      console.log(data)
-      console.log("======================")
-      res.status(200).json(data)
-  }).catch(err => {
-      console.log(err)
-      res.status(500).json({err_message:err})
-  })
-})
+
 
 //======Delete a list item by id ======//
 router.delete("/:itemid", async(req,res) => {
@@ -68,6 +54,7 @@ router.post("/", (req, res) => {
         description: req.body.description,
         genre:req.body.genre,
         rating:req.body.rating,
+        status:req.body.status,
         user_id: req.body.userId
       })
       .returning("*")
