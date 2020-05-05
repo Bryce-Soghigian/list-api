@@ -3,9 +3,8 @@ const Users = require("./user-model");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const secrets = require("./secrets");
-const verifyToken = require("../../middleware/verifyToken")
 //========Gets users and all of their data
-router.get("/", verifyToken, (req, res) => {
+router.get("/",  (req, res) => {
   Users.getUsers()
     .then((data) => {
       res.status(200).json(data);
