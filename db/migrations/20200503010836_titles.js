@@ -1,7 +1,7 @@
 
 exports.up = function(knex) {
   return knex.schema.createTable("titles", (table) =>{
-      table.increments()
+      table.integer("id")
       table.text("titles")
   })
 };

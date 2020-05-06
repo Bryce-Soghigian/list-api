@@ -8,6 +8,6 @@ This is the backend for an anime list application i am making so my friends and 
 
 ## Todos
 
-- [] Implement episodes router 
-- [] Implement watch router
-- [] Implement S tier get
+- [+] Implement episodes router 
+- [+] Implement watch router
+- [+] Implement S tier get

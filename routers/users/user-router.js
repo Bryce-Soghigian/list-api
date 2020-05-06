@@ -41,8 +41,6 @@ router.post("/login", (req, res) => {
           user_id: id,
           username: username,
           message: `Welcome ${user.username}!`,
-          // password:
-          //   "im not gonna tell you that because thats not secure development",
           token,
         });
         console.log("token created");
@@ -51,7 +49,7 @@ router.post("/login", (req, res) => {
       }
     })
     .catch((error) => {
-      res.status(500).json({ message: "There was an error logging you in" });
+      res.status(500).json({ message: `There was an error logging you in. it was ${error}`});
     });
 });
 

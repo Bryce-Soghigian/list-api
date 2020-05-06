@@ -2,8 +2,21 @@ const router = require("express").Router();
 knex = require("../../config/knex-config");
 
 
+router.get("/episode/:user_id", (req, res) => {
+const {user_id} = req.params
 
+knex.join('episode','listitems.id','=','episode.list_item_id')
+  .where('listitems.user_id',user_id)
+  .select("*")
+  .from("listitems")
+  .then(res => {
+    console.log(res)
+    res.status(200).json(res)
+  }).catch(err => {
+    res.status(500).json(err)
+  })
 
+})
 
 router.get("/", (req, res) => {
   knex
