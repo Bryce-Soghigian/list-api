@@ -79,7 +79,7 @@ router.delete("/delete/:id", (req,res) => {
     console.log(res)
     res.status(202).json(res)
   }).catch(err => {
-    res.status(500).json(err)
+    res.status(200).json(err)
   })
 })
 
