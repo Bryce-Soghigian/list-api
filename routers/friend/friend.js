@@ -24,6 +24,7 @@ router.post("/:id", (req, res) => {
     .insert({
       my_id: user,
       friend_id: req.body.friend_id,
+      my_username: req.body.my_username,
       friend_username:req.body.friend_username,
       status: req.body.status,
     })
