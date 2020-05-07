@@ -23,7 +23,7 @@ router.post("/:id", (req, res) => {
   knex("friends")
     .insert({
       my_id: user,
-      friend_username: req.body.friend_username,
+      friend_id: req.body.friend_id,
       status: req.body.status,
     })
     .returning("*")
@@ -41,7 +41,7 @@ router.post("/:id", (req, res) => {
 router.get("/:id", (req, res) => {
   knex
     .select("*")
-    .where("friends.id", req.params.id)
+    .where("friends.friend_id", req.params.id)
     .from("friends")
     .then((data) => {
       console.log(data);
