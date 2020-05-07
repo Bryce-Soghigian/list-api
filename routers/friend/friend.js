@@ -71,4 +71,16 @@ router.put("/:id", (req, res) => {
     });
 });
 
+router.delete("/delete/:id", (req,res) => {
+  knex("friends")
+  .where({id: req.params.id})
+  .del()
+  .then(res => {
+    console.log(res)
+    res.status(202).json(res)
+  }).catch(err => {
+    res.status(500).json(err)
+  })
+})
+
 module.exports = router;
