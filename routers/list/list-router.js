@@ -56,6 +56,7 @@ router.post("/", (req, res) => {
         genre:req.body.genre,
         rating:req.body.rating,
         status:req.body.status,
+        img_url:req.body.img_url,
         user_id: req.body.userId
       })
       .returning("*")

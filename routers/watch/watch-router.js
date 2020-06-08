@@ -49,8 +49,22 @@ router.get("/:id", (req,res) => {
         res.status(500).json(data)
     })
 })
+/**
+ * UPDATES A WATCH LIST ITEM BY ITEM ID
+ */
+router.put("/:id",(req,res) => {
+    const {body} = req.body
 
-
+    knex("watch")
+    .where({id:req.params.id})
+    .update(body)
+    .returning("*")
+    .then(data => {
+        res.status(200).json(data)
+    }).catch(err => {
+        res.status(500).json(err)
+    })
+})
 
 
 module.exports = router
