@@ -12,7 +12,7 @@ return knex.schema
       table.text("description")
       table.text("rating")//S A B C D F
       table.text("genre")
-      table.text("status")// To watch // watching // completed //dropped
+      // table.text("status")// To watch // watching // completed //dropped
       table.integer("user_id").unsigned().references("id").inTable("users")
       table.timestamp("date_created").defaultTo(knex.fn.now());
   })
